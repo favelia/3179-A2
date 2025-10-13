@@ -1,0 +1,61 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 600,
+  "height": 450,
+  "title": "Poverty Rate by State in Malaysia (2022)",
+  "projection": {"type": "mercator"},
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/favelia/3179/main/geoBoundaries-MYS-ADM1.json",
+        "format": {"type": "topojson", "feature": "geoBoundaries-MYS-ADM1"}
+      },
+      "transform": [
+        {
+          "lookup": "properties.shapeName",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/favelia/3179/main/hies_state.csv"
+            },
+            "key": "state",
+            "fields": ["poverty", "income_mean", "income_median", "gini"]
+          }
+        }
+      ],
+      "mark": {"type": "geoshape", "stroke": "white"},
+      "encoding": {
+        "color": {
+          "field": "poverty",
+          "type": "quantitative",
+          "title": "Poverty Rate (%)",
+          "scale": {"scheme": "oranges"}
+        },
+        "tooltip": [
+          {"field": "properties.shapeName", "title": "State"},
+          {"field": "poverty", "type": "quantitative", "title": "Poverty Rate (%)"},
+          {"field": "income_mean", "type": "quantitative", "title": "Mean Income (RM)"},
+          {"field": "income_median", "type": "quantitative", "title": "Median Income (RM)"},
+          {"field": "gini", "type": "quantitative", "title": "Gini Index"}
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {"label": "Sabah and Kelantan record the highest poverty levels"}
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "bottom",
+        "x": 300,
+        "y": 220,
+        "fontSize": 13,
+        "fontWeight": "bold",
+        "color": "#3a2a00"
+      },
+      "encoding": {"text": {"field": "label"}}
+    }
+  ]
+}

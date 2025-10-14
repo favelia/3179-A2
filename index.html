@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Malaysia Socioeconomic Visualisations (2022)</title>
+
+  <!-- Vega Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Georgia&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: #f9f6f1;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      text-align: center;
+      background-color: #f4efe7;
+      padding: 40px 20px;
+      border-bottom: 2px solid #ddd0b9;
+    }
+
+    h1 {
+      font-family: 'Georgia', serif;
+      font-size: 2.4em;
+      margin-bottom: 8px;
+      color: #2a2a2a;
+    }
+
+    h2 {
+      font-family: 'Georgia', serif;
+      font-size: 1.6em;
+      color: #2e4057;
+      margin-bottom: 12px;
+    }
+
+    p {
+      max-width: 520px;
+      margin: auto;
+      font-size: 1em;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .vis-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 60px;
+      margin: 70px auto;
+      max-width: 1200px;
+      padding: 20px;
+    }
+
+    .vis-container {
+      flex: 1.2;
+      text-align: center;
+    }
+
+    .vis-explanation {
+      flex: 0.8;
+    }
+
+    .vega-embed {
+      border-radius: 12px;
+      box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.15);
+      background-color: #fff;
+      padding: 12px;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.85em;
+      color: #777;
+      margin: 60px 0 30px;
+    }
+
+    @media (max-width: 900px) {
+      .vis-section {
+        flex-direction: column;
+      }
+      .vis-explanation {
+        text-align: center;
+      }
+      .vega-embed {
+        width: 95% !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Malaysia Socioeconomic and Poverty Insights (2022)</h1>
+    <p>Exploring income, expenditure, and poverty patterns across Malaysian states using interactive data visualisations.</p>
+  </header>
+
+  <!-- Visualization 1 -->
+  <section class="vis-section">
+    <div class="vis-container">
+      <div id="interactive-map"></div>
+    </div>
+    <div class="vis-explanation">
+      <h2>State Level Mean Income and Expenditure</h2>
+      <p>
+        Expenditure in <b>Kuala Lumpur</b> and <b>Selangor</b> is nearly twice as much as the East Coast. 
+        The gap reflects not just higher wages but also lifestyle costs in urban centers.  
+        Meanwhile, states like <b>Kelantan</b> and <b>Sabah</b> show how rural economies still keep expenditure modest despite steady growth.
+      </p>
+    </div>
+  </section>
+
+  <script type="text/javascript">
+    vegaEmbed(
+      '#interactive-map',
+      'https://raw.githubusercontent.com/favelia/3179-A2/main/Vis1.json',
+      { actions: false }
+    ).catch(console.error);
+  </script>
+
+  <!-- Visualization 2 -->
+  <section class="vis-section">
+    <div class="vis-container">
+      <div id="poverty-map"></div>
+    </div>
+    <div class="vis-explanation">
+      <h2>Poverty Rate by State</h2>
+      <p>
+        <b>Sabah</b> continued to record the highest poverty rate, almost 20 times higher than in Kuala Lumpur.  
+        <b>Labuan</b> and <b>Putrajaya</b> remain among the lowest despite smaller populations, showing the impact of concentrated urban economies.  
+        The clear East–West divide highlights how development remains uneven across the country.
+      </p>
+    </div>
+  </section>
+
+  <script type="text/javascript">
+    vegaEmbed(
+      '#poverty-map',
+      'https://raw.githubusercontent.com/favelia/3179-A2/main/Vis2.json',
+      { actions: false }
+    ).catch(console.error);
+  </script>
+
+  <!-- Visualization 3 -->
+  <section class="vis-section">
+    <div class="vis-container">
+      <div id="scatter-gini"></div>
+    </div>
+    <div class="vis-explanation">
+      <h2>Mean Income vs Gini Index</h2>
+      <p>
+        States with higher average income don’t always guarantee fairer wealth distribution.  
+        For instance, <b>Kuala Lumpur</b> tops income charts yet shows notable inequality, while <b>Perlis</b> and <b>Kelantan</b> maintain tighter income gaps.  
+      </p>
+    </div>
+  </section>
+
+  <script type="text/javascript">
+    vegaEmbed(
+      '#scatter-gini',
+      'https://raw.githubusercontent.com/favelia/3179-A2/main/Vis3.json',
+      { actions: false }
+    ).catch(console.error);
+  </script>
+
+  <footer>
+    © 2025 Flisha Avelia | Data Source: Department of Statistics Malaysia (DOSM)
+  </footer>
+</body>
+</html>

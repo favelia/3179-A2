@@ -1,0 +1,57 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Utility Access Trends (2016–2022) across Malaysian states",
+    "data": {
+      "url": "utilities.csv",
+      "format": {"type": "csv"}
+    },
+    "transform": [
+      {"filter": "datum.District === 'All Districts'"},
+      {
+        "fold": ["Water", "Sanitation", "Electricity"],
+        "as": ["Utility Type", "Access (%)"]
+      }
+    ],
+    "width": 700,
+    "height": 400,
+    "mark": {
+      "type": "line",
+      "point": true
+    },
+    "encoding": {
+      "x": {
+        "field": "Year",
+        "type": "temporal",
+        "title": "Year"
+      },
+      "y": {
+        "field": "Access (%)",
+        "type": "quantitative",
+        "title": "Percentage of Households with Access",
+        "scale": {"domain": [95, 100]}
+      },
+      "color": {
+        "field": "Utility Type",
+        "type": "nominal",
+        "title": "Utility Type"
+      },
+      "detail": {"field": "State"},
+      "tooltip": [
+        {"field": "State", "title": "State"},
+        {"field": "Year", "title": "Year"},
+        {"field": "Utility Type", "title": "Utility"},
+        {"field": "Access (%)", "title": "Access (%)", "format": ".2f"}
+      ]
+    },
+    "title": {
+      "text": "Utility Access Trends (2016–2022)",
+      "subtitle": "Based on DOSM Basic Amenities & Utilities Survey | All Districts",
+      "anchor": "start",
+      "fontSize": 18
+    },
+    "config": {
+      "axis": {"labelFontSize": 12, "titleFontSize": 14},
+      "legend": {"titleFontSize": 13, "labelFontSize": 12},
+      "background": "#ffffff"
+    }
+  }

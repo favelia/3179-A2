@@ -1,0 +1,37 @@
+date,state,district,piped_water,sanitation,electricity
+2016-01-01,Johor,All Districts,99.9,99.99,100.0
+2019-01-01,Johor,All Districts,99.9,99.9,100.0
+2022-01-01,Johor,All Districts,99.6,100.0,99.6
+2016-01-01,Kedah,All Districts,98.7,99.98,100.0
+2019-01-01,Kedah,All Districts,99.5,100.0,100.0
+2022-01-01,Kedah,All Districts,99.6,100.0,99.6
+2016-01-01,Kelantan,All Districts,65.4,99.67,100.0
+2019-01-01,Kelantan,All Districts,67.9,100.0,100.0
+2022-01-01,Kelantan,All Districts,70.2,99.8,70.2
+2016-01-01,Malacca,All Districts,100.0,99.92,100.0
+2019-01-01,Malacca,All Districts,100.0,100.0,100.0
+2022-01-01,Malacca,All Districts,100.0,100.0,100.0
+2016-01-01,Negeri Sembilan,All Districts,99.9,99.98,100.0
+2019-01-01,Negeri Sembilan,All Districts,99.9,100.0,100.0
+2022-01-01,Negeri Sembilan,All Districts,99.8,100.0,99.8
+2016-01-01,Pahang,All Districts,97.8,99.75,100.0
+2019-01-01,Pahang,All Districts,97.9,99.98,100.0
+2022-01-01,Pahang,All Districts,98.3,99.4,98.3
+2016-01-01,Perak,All Districts,99.4,99.97,100.0
+2019-01-01,Perak,All Districts,99.4,99.99,100.0
+2022-01-01,Perak,All Districts,99.2,100.0,99.2
+2016-01-01,Penang,All Districts,99.9,100.0,100.0
+2019-01-01,Penang,All Districts,99.9,99.95,100.0
+2022-01-01,Penang,All Districts,100.0,100.0,100.0
+2016-01-01,Sabah,All Districts,83.4,96.14,99.5
+2019-01-01,Sabah,All Districts,84.7,95.61,99.7
+2022-01-01,Sabah,All Districts,87.6,98.8,87.6
+2016-01-01,Sarawak,All Districts,86.0,99.66,99.6
+2019-01-01,Sarawak,All Districts,86.4,99.73,99.8
+2022-01-01,Sarawak,All Districts,90.0,100.0,90.0
+2016-01-01,Selangor,All Districts,100.0,100.0,100.0
+2019-01-01,Selangor,All Districts,100.0,100.0,100.0
+2022-01-01,Selangor,All Districts,100.0,100.0,100.0
+2016-01-01,Trengganu,All Districts,96.0,99.96,100.0
+2019-01-01,Trengganu,All Districts,96.2,100.0,100.0
+2022-01-01,Trengganu,All Districts,98.5,100.0,98.5

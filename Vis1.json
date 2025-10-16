@@ -2,39 +2,51 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 600,
   "height": 450,
-  "title": "Mean Household Income by State (RM)",
+  "title": "Household Income by State (2022)",
   "projection": {"type": "mercator"},
-  "data": {
-    "url": "https://raw.githubusercontent.com/favelia/3179/main/geoBoundaries-MYS-ADM1.json",
-    "format": {"type": "topojson", "feature": "geoBoundaries-MYS-ADM1"}
-  },
-  "transform": [
+  "layer": [
     {
-      "lookup": "properties.shapeName",
-      "from": {
-        "data": {
-          "url": "https://raw.githubusercontent.com/favelia/3179/main/hies_state.csv"
+      "data": {
+        "url": "https://raw.githubusercontent.com/vega/vega-datasets/main/data/world-110m.json",
+        "format": {"type": "topojson", "feature": "countries"}
+      },
+      "transform": [{"filter": "datum.id != '458'"}],
+      "mark": {"type": "geoshape", "fill": "#e0e0e0", "stroke": "white"}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/favelia/3179/main/geoBoundaries-MYS-ADM1.json",
+        "format": {"type": "topojson", "feature": "geoBoundaries-MYS-ADM1"}
+      },
+      "transform": [
+        {
+          "lookup": "properties.shapeName",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/favelia/3179/main/hies_state.csv"
+            },
+            "key": "state",
+            "fields": ["income_mean", "expenditure_mean", "gini", "poverty"]
+          }
+        }
+      ],
+      "mark": {"type": "geoshape", "stroke": "white"},
+      "encoding": {
+        "color": {
+          "field": "income_mean",
+          "type": "quantitative",
+          "title": "Mean Income (RM)",
+          "scale": {"scheme": "blues"}
         },
-        "key": "state",
-        "fields": ["income_mean", "expenditure_mean", "gini", "poverty"]
+        "tooltip": [
+          {"field": "properties.shapeName", "title": "State"},
+          {"field": "income_mean", "title": "Mean Income (RM)"},
+          {"field": "expenditure_mean", "title": "Mean Expenditure (RM)"},
+          {"field": "gini", "title": "Gini Index"},
+          {"field": "poverty", "title": "Poverty Rate (%)"}
+        ]
       }
     }
   ],
-  "mark": {"type": "geoshape", "stroke": "white"},
-  "encoding": {
-    "color": {
-      "field": "income_mean",
-      "type": "quantitative",
-      "title": "Mean Income (RM)",
-      "scale": {"scheme": "blues"}
-    },
-    "tooltip": [
-      {"field": "properties.shapeName", "title": "State"},
-      {"field": "income_mean", "title": "Mean Income (RM)"},
-      {"field": "expenditure_mean", "title": "Mean Expenditure (RM)"},
-      {"field": "gini", "title": "Gini Index"},
-      {"field": "poverty", "title": "Poverty Rate (%)"}
-    ]
-  },
   "config": {"background": "transparent"}
 }

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Correlation Between Mean Expenditure and Utility Access (2022)",
+  "data": {
+    "url": "https://raw.githubusercontent.com/favelia/3179-A2/main/hies_state.csv"
+  },
+  "transform": [
+    {
+      "lookup": "state",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/favelia/3179-A2/main/hh_access_amenities_states.csv"
+        },
+        "key": "state",
+        "fields": ["piped_water", "sanitation", "electricity"]
+      }
+    },
+    {
+      "calculate": "{'Piped Water': datum.piped_water, 'Sanitation': datum.sanitation, 'Electricity': datum.electricity}",
+      "as": "utilities"
+    },
+    {"fold": ["Piped Water", "Sanitation", "Electricity"], "as": ["Utility", "Access"]}
+  ],
+  "facet": {
+  "column": {"field": "Utility", "type": "nominal", "title": "Utility Type"}
+  },
+  "spec": {
+    "width": 200,
+    "height": 200,
+    "mark": {"type": "circle", "tooltip": true, "size": 100},
+    "encoding": {
+      "x": {
+        "field": "expenditure_mean",
+        "type": "quantitative",
+        "title": "Mean Expenditure (RM)"
+      },
+      "y": {
+        "field": "Access",
+        "type": "quantitative",
+        "title": "Average Utility Access (%)"
+      },
+      "color": {
+        "field": "Utility",
+        "type": "nominal",
+        "legend": null
+      },
+      "tooltip": [
+        {"field": "state", "title": "State"},
+        {"field": "expenditure_mean", "title": "Mean Expenditure"},
+        {"field": "Access", "title": "Utility Access (%)"},
+        {"field": "Utility", "title": "Utility Type"}
+      ]
+    }
+  },
+  "config": {
+    "view": {"stroke": null},
+    "facet": {"spacing": 10},
+    "axis": {"labelFontSize": 10, "titleFontSize": 12}
+  }
+}

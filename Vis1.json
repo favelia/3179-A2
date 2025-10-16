@@ -2,69 +2,39 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 600,
   "height": 450,
-  "title": "Malaysia States: Income and Expenditure (2022)",
+  "title": "Mean Household Income by State (RM)",
   "projection": {"type": "mercator"},
-  "params": [
+  "data": {
+    "url": "https://raw.githubusercontent.com/favelia/3179/main/geoBoundaries-MYS-ADM1.json",
+    "format": {"type": "topojson", "feature": "geoBoundaries-MYS-ADM1"}
+  },
+  "transform": [
     {
-      "name": "metric",
-      "value": "income_mean",
-      "bind": {
-        "input": "select",
-        "options": ["income_mean", "expenditure_mean"],
-        "labels": ["Mean Income (RM)", "Mean Expenditure (RM)"],
-        "name": "Select Metric: "
+      "lookup": "properties.shapeName",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/favelia/3179/main/hies_state.csv"
+        },
+        "key": "state",
+        "fields": ["income_mean", "expenditure_mean", "gini", "poverty"]
       }
     }
   ],
-  "layer": [
-    {
-      "data": {
-        "url": "https://raw.githubusercontent.com/favelia/3179/main/geoBoundaries-MYS-ADM1.json",
-        "format": {"type": "topojson", "feature": "geoBoundaries-MYS-ADM1"}
-      },
-      "transform": [
-        {
-          "lookup": "properties.shapeName",
-          "from": {
-            "data": {
-              "url": "https://raw.githubusercontent.com/favelia/3179/main/hies_state.csv"
-            },
-            "key": "state",
-            "fields": ["income_mean", "expenditure_mean", "gini", "poverty"]
-          }
-        },
-        {"calculate": "datum[metric]", "as": "selected_metric"}
-      ],
-      "mark": {"type": "geoshape", "stroke": "white"},
-      "encoding": {
-        "color": {
-          "field": "selected_metric",
-          "type": "quantitative",
-          "title": "Selected Metric (RM)",
-          "scale": {"scheme": "blues"}
-        },
-        "tooltip": [
-          {"field": "properties.shapeName", "title": "State"},
-          {"field": "income_mean", "title": "Mean Income (RM)"},
-          {"field": "expenditure_mean", "title": "Mean Expenditure (RM)"},
-          {"field": "gini", "title": "Gini Index"},
-          {"field": "poverty", "title": "Poverty Rate (%)"}
-        ]
-      }
+  "mark": {"type": "geoshape", "stroke": "white"},
+  "encoding": {
+    "color": {
+      "field": "income_mean",
+      "type": "quantitative",
+      "title": "Mean Income (RM)",
+      "scale": {"scheme": "blues"}
     },
-    {
-      "data": {"values": [{"label": "Selangor has the highest mean income & expenditure"}]},
-      "mark": {
-        "type": "text",
-        "align": "center",
-        "baseline": "bottom",
-        "x": 330,
-        "y": 210,
-        "fontSize": 13,
-        "fontWeight": "bold",
-        "color": "#2a2a2a"
-      },
-      "encoding": {"text": {"field": "label"}}
-    }
-  ]
+    "tooltip": [
+      {"field": "properties.shapeName", "title": "State"},
+      {"field": "income_mean", "title": "Mean Income (RM)"},
+      {"field": "expenditure_mean", "title": "Mean Expenditure (RM)"},
+      {"field": "gini", "title": "Gini Index"},
+      {"field": "poverty", "title": "Poverty Rate (%)"}
+    ]
+  },
+  "config": {"background": "transparent"}
 }

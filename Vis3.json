@@ -1,67 +1,43 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Mean Income vs Gini Index by State (2022)",
   "width": 600,
-  "height": 420,
-  "data": {
-    "url": "https://raw.githubusercontent.com/favelia/3179/main/hies_state.csv"
-  },
-  "transform": [
+  "height": 450,
+  "title": "Poverty Rate by State in Malaysia",
+  "projection": {"type": "mercator"},
+  "layer": [
     {
-      "calculate": "indexof(['Sabah','Sarawak','Labuan'], datum.state) >= 0 ? 'East Malaysia' : 'Peninsular Malaysia'",
-      "as": "region"
-    }
-  ],
-  "mark": {"type": "circle", "opacity": 0.8, "stroke": "black", "strokeWidth": 0.5},
-  "encoding": {
-    "x": {
-      "field": "income_mean",
-      "type": "quantitative",
-      "title": "Mean Income (RM)",
-      "scale": {"zero": false}
-    },
-    "y": {
-      "field": "gini",
-      "type": "quantitative",
-      "title": "Gini Coefficient (Inequality)"
-    },
-    "size": {
-      "field": "poverty",
-      "type": "quantitative",
-      "title": "Poverty Rate (%)",
-      "scale": {"range": [100, 2000]}
-    },
-    "color": {
-      "field": "region",
-      "type": "nominal",
-      "title": "Region",
-      "scale": {
-        "domain": ["Peninsular Malaysia", "East Malaysia"],
-        "range": ["#1f77b4", "#ff7f0e"]
+      "data": {
+        "url": "https://raw.githubusercontent.com/favelia/3179/main/geoBoundaries-MYS-ADM1.json",
+        "format": {"type": "topojson", "feature": "geoBoundaries-MYS-ADM1"}
+      },
+      "transform": [
+        {
+          "lookup": "properties.shapeName",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/favelia/3179/main/hies_state.csv"
+            },
+            "key": "state",
+            "fields": ["poverty", "income_mean", "income_median", "gini"]
+          }
+        }
+      ],
+      "mark": {"type": "geoshape", "stroke": "white"},
+      "encoding": {
+        "color": {
+          "field": "poverty",
+          "type": "quantitative",
+          "title": "Poverty Rate (%)",
+          "scale": {"scheme": "oranges"}
+        },
+        "tooltip": [
+          {"field": "properties.shapeName", "title": "State"},
+          {"field": "poverty", "type": "quantitative", "title": "Poverty Rate (%)"},
+          {"field": "income_mean", "type": "quantitative", "title": "Mean Income (RM)"},
+          {"field": "income_median", "type": "quantitative", "title": "Median Income (RM)"},
+          {"field": "gini", "type": "quantitative", "title": "Gini Index"}
+        ]
       }
-    },
-    "tooltip": [
-      {"field": "state", "title": "State"},
-      {"field": "income_mean", "title": "Mean Income (RM)"},
-      {"field": "gini", "title": "Gini Coefficient"},
-      {"field": "poverty", "title": "Poverty Rate (%)"},
-      {"field": "region", "title": "Region"}
-    ]
-  },
-  "config": {
-    "background": "transparent",
-    "axis": {
-      "titleFontSize": 13,
-      "labelFontSize": 11,
-      "titleFont": "Helvetica",
-      "labelFont": "Helvetica"
-    },
-    "legend": {
-      "titleFontSize": 12,
-      "labelFontSize": 11,
-      "titleFont": "Helvetica",
-      "labelFont": "Helvetica"
-    },
-    "view": {"stroke": "transparent"}
-  }
+    }
+  ]
 }

@@ -6,8 +6,7 @@
   "projection": {
     "type": "mercator",
     "center": [110, 4], 
-    "scale": 2000, 
-    "translate": [300, 220]
+    "scale": 2000
   },
   "layer": [
     {
@@ -15,9 +14,6 @@
         "url": "https://raw.githubusercontent.com/vega/vega-datasets/main/data/world-110m.json",
         "format": {"type": "topojson", "feature": "countries"}
       },
-      "transform": [
-        {"filter": "datum.id in ['360', '458', '096', '764', '116']"}
-      ],
       "mark": {"type": "geoshape", "fill": "#e0e0e0", "stroke": "white"}
     },
     {

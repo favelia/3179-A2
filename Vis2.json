@@ -3,7 +3,12 @@
   "width": 600,
   "height": 450,
   "title": "Household Expenditure by State (2022)",
-  "projection": {"type": "mercator"},
+  "projection": {
+    "type": "mercator",
+    "center": [109.5, 3],
+    "scale": 1700,
+    "translate": [300, 240]
+  },
   "layer": [
     {
       "data": {

@@ -3,14 +3,17 @@
   "width": 600,
   "height": 450,
   "title": "Household Income by State (2022)",
-  "projection": {"type": "mercator"},
+  "projection": {
+    "type": "mercator",
+    "center": [110, 4], 
+    "scale": 2000
+  },
   "layer": [
     {
       "data": {
         "url": "https://raw.githubusercontent.com/vega/vega-datasets/main/data/world-110m.json",
         "format": {"type": "topojson", "feature": "countries"}
       },
-      "transform": [{"filter": "datum.id != '458'"}],
       "mark": {"type": "geoshape", "fill": "#e0e0e0", "stroke": "white"}
     },
     {

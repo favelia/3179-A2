@@ -51,7 +51,7 @@
           "field": "poverty",
           "type": "quantitative",
           "title": "Poverty Rate (%)",
-          "scale": {"scheme": "oranges"}
+          "scale": {"scheme": "purples"}
         },
         "tooltip": [
           {"field": "properties.shapeName", "title": "State"},

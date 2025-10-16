@@ -1,47 +1,70 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Utility Access Trends across Malaysian states",
+  "title": "Utility Access Trends in Malaysia (2016–2022)",
   "data": {
-    "url": "utilities.csv",
-    "format": {"type": "csv"}
+    "url": "https://raw.githubusercontent.com/favelia/3179-A2/main/hh_access_amenities_states.csv"
   },
   "transform": [
-    {"filter": "datum.District === 'All Districts'"},
-    {"calculate": "year(datum.Year)", "as": "YearNum"},
     {
-      "fold": ["Water Supply (%)", "Sanitation (%)", "Electricity (%)"],
-      "as": ["Utility Type", "Access (%)"]
+      "fold": ["piped_water", "sanitation", "electricity"],
+      "as": ["Utility", "Access_Percentage"]
+    },
+    {
+      "calculate": "year(datum.date)",
+      "as": "Year"
     }
   ],
-  "width": 700,
-  "height": 400,
-  "mark": {"type": "line", "point": true},
-  "encoding": {
-    "x": {"field": "YearNum", "type": "ordinal", "title": "Year"},
-    "y": {
-      "field": "Access (%)",
-      "type": "quantitative",
-      "title": "Percentage of Households with Access",
-      "scale": {"domain": [95, 100]}
-    },
-    "color": {"field": "Utility Type", "type": "nominal", "title": "Utility Type"},
-    "detail": {"field": "State"},
-    "tooltip": [
-      {"field": "State", "title": "State"},
-      {"field": "YearNum", "title": "Year"},
-      {"field": "Utility Type", "title": "Utility"},
-      {"field": "Access (%)", "title": "Access (%)", "format": ".2f"}
-    ]
+  "params": [
+    {
+      "name": "StateSelect",
+      "bind": {
+        "input": "select",
+        "options": [
+          "Johor","Kedah","Kelantan","Malacca","Negeri Sembilan",
+          "Pahang","Perak","Penang","Sabah","Sarawak","Selangor","Trengganu"
+        ],
+        "name": "Select State: "
+      },
+      "value": "Sabah"
+    }
+  ],
+  "facet": {
+  "column": {"field": "Utility", "type": "nominal", "title": "Utility Type"}
   },
-  "title": {
-    "text": "Utility Access Trends (2016–2022)",
-    "subtitle": "Based on DOSM Basic Amenities & Utilities Survey | All Districts",
-    "anchor": "start",
-    "fontSize": 18
+  "spec": {
+    "width": 260,
+    "height": 240,
+    "transform": [
+      { "filter": "datum.state == StateSelect" }
+    ],
+    "mark": {
+      "type": "line",
+      "point": true,
+      "strokeWidth": 3
+    },
+    "encoding": {
+      "x": {
+        "field": "Year",
+        "type": "ordinal",
+        "title": "Year"
+      },
+      "y": {
+        "field": "Access_Percentage",
+        "type": "quantitative",
+        "title": "Access to Utility (%)",
+        "scale": { "domain": [60, 100] }
+      },
+      "tooltip": [
+        { "field": "state", "title": "State" },
+        { "field": "Year" },
+        { "field": "Utility" },
+        { "field": "Access_Percentage", "title": "Access (%)" }
+      ]
+    }
   },
   "config": {
-    "axis": {"labelFontSize": 12, "titleFontSize": 14},
-    "legend": {"titleFontSize": 13, "labelFontSize": 12},
-    "background": "#ffffff"
+    "facet": { "spacing": 16 },
+    "axis": { "labelFontSize": 11, "titleFontSize": 12 },
+    "title": { "fontSize": 16, "anchor": "start" }
   }
 }

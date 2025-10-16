@@ -16,13 +16,16 @@
       }
     },
     {
-      "calculate": "{'Piped Water': datum.piped_water, 'Sanitation': datum.sanitation, 'Electricity': datum.electricity}",
-      "as": "utilities"
+      "fold": ["piped_water", "sanitation", "electricity"],
+      "as": ["Utility", "Access"]
     },
-    {"fold": ["Piped Water", "Sanitation", "Electricity"], "as": ["Utility", "Access"]}
+    {
+      "calculate": "datum.Utility == 'piped_water' ? 'Piped Water' : datum.Utility == 'sanitation' ? 'Sanitation' : 'Electricity'",
+      "as": "Utility"
+    }
   ],
   "facet": {
-  "column": {"field": "Utility", "type": "nominal", "title": "Utility Type"}
+    "column": {"field": "Utility", "type": "nominal", "title": "Utility Type"}
   },
   "spec": {
     "width": 200,
@@ -37,7 +40,7 @@
       "y": {
         "field": "Access",
         "type": "quantitative",
-        "title": "Average Utility Access (%)"
+        "title": "Utility Access (%)"
       },
       "color": {
         "field": "Utility",
@@ -46,7 +49,7 @@
       },
       "tooltip": [
         {"field": "state", "title": "State"},
-        {"field": "expenditure_mean", "title": "Mean Expenditure"},
+        {"field": "expenditure_mean", "title": "Mean Expenditure (RM)"},
         {"field": "Access", "title": "Utility Access (%)"},
         {"field": "Utility", "title": "Utility Type"}
       ]

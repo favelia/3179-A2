@@ -41,7 +41,7 @@
           "field": "expenditure_mean",
           "type": "quantitative",
           "title": "Mean Expenditure (RM)",
-          "scale": {"scheme": "greens"}
+          "scale": {"scheme": "oranges"}
         },
         "tooltip": [
           {"field": "properties.shapeName", "title": "State"},

@@ -2,11 +2,12 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 600,
   "height": 450,
-  "title": "Household Income by State (2022)",
+  "title": "Household Income by State",
   "projection": {
     "type": "mercator",
     "center": [110, 4], 
-    "scale": 2000
+    "scale": 2000, 
+    "translate": [300, 220]
   },
   "layer": [
     {
@@ -14,6 +15,9 @@
         "url": "https://raw.githubusercontent.com/vega/vega-datasets/main/data/world-110m.json",
         "format": {"type": "topojson", "feature": "countries"}
       },
+      "transform": [
+        {"filter": "datum.id in ['360', '458', '096', '764', '116']"}
+      ],
       "mark": {"type": "geoshape", "fill": "#e0e0e0", "stroke": "white"}
     },
     {

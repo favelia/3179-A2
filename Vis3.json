@@ -2,9 +2,32 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 600,
   "height": 450,
-  "title": "Poverty Rate by State in Malaysia",
-  "projection": {"type": "mercator"},
+  "title": "Poverty Rate by State in Malaysia (2022)",
+  "projection": {
+    "type": "mercator",
+    "center": [109.5, 3],
+    "scale": 1700,
+    "translate": [300, 240]
+  },
   "layer": [
+    {
+      "data": {
+        "graticule": true
+      },
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#cccccc",
+        "strokeWidth": 0.5
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/vega/vega-datasets/main/data/world-110m.json",
+        "format": {"type": "topojson", "feature": "countries"}
+      },
+      "transform": [{"filter": "datum.id != '458'"}],
+      "mark": {"type": "geoshape", "fill": "#e0e0e0", "stroke": "white"}
+    },
     {
       "data": {
         "url": "https://raw.githubusercontent.com/favelia/3179/main/geoBoundaries-MYS-ADM1.json",
@@ -32,12 +55,13 @@
         },
         "tooltip": [
           {"field": "properties.shapeName", "title": "State"},
-          {"field": "poverty", "type": "quantitative", "title": "Poverty Rate (%)"},
-          {"field": "income_mean", "type": "quantitative", "title": "Mean Income (RM)"},
-          {"field": "income_median", "type": "quantitative", "title": "Median Income (RM)"},
-          {"field": "gini", "type": "quantitative", "title": "Gini Index"}
+          {"field": "poverty", "title": "Poverty Rate (%)"},
+          {"field": "income_mean", "title": "Mean Income (RM)"},
+          {"field": "income_median", "title": "Median Income (RM)"},
+          {"field": "gini", "title": "Gini Index"}
         ]
       }
     }
-  ]
+  ],
+  "config": {"background": "transparent"}
 }

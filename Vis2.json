@@ -1,13 +1,13 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 600,
-  "height": 450,
+  "width": 420,
+  "height": 360,
   "title": "Household Expenditure by State (2022)",
   "projection": {
     "type": "mercator",
     "center": [109.5, 3],
-    "scale": 1700,
-    "translate": [300, 240]
+    "scale": 1200,
+    "translate": [210, 180]
   },
   "layer": [
     {
@@ -45,10 +45,7 @@
         },
         "tooltip": [
           {"field": "properties.shapeName", "title": "State"},
-          {"field": "income_mean", "title": "Mean Income (RM)"},
-          {"field": "expenditure_mean", "title": "Mean Expenditure (RM)"},
-          {"field": "gini", "title": "Gini Index"},
-          {"field": "poverty", "title": "Poverty Rate (%)"}
+          {"field": "expenditure_mean", "title": "Mean Expenditure (RM)"}
         ]
       }
     }

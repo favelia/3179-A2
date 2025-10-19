@@ -2,7 +2,11 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 420,
   "height": 360,
-  "title": "Household Income by State (2022)",
+  "title": {
+    "text": "Household Income by State (2022)",
+    "anchor": "start",
+    "fontSize": 16
+  },
   "projection": {
     "type": "mercator",
     "center": [109.5, 3],
@@ -47,6 +51,40 @@
           {"field": "properties.shapeName", "title": "State"},
           {"field": "income_mean", "title": "Mean Income (RM)"}
         ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {"lon": 101.5, "lat": 3.0, "text": "Selangor has the highest mean income of RM 12,233"}
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "dy": -10,
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "color": "#1a1a1a"
+      },
+      "encoding": {
+        "longitude": {"field": "lon"},
+        "latitude": {"field": "lat"},
+        "text": {"field": "text"}
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {"lon": 101.5, "lat": 3.0},
+          {"lon": 102.3, "lat": 3.5}
+        ]
+      },
+      "mark": {"type": "line", "color": "black", "strokeWidth": 1},
+      "encoding": {
+        "longitude": {"field": "lon"},
+        "latitude": {"field": "lat"}
       }
     }
   ],

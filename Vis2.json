@@ -56,7 +56,7 @@
     {
       "data": {
         "values": [
-          {"lon": 101.5, "lat": 3.0, "text": "Highest mean expenditure is Selangor with RM 6,770"}
+          {"lon": 101.5, "lat": 3.0, "text": "Highest mean expenditure is Kuala Lumpur with RM 7,823"}
         ]
       },
       "mark": {
@@ -77,8 +77,8 @@
     {
       "data": {
         "values": [
-          {"lon": 101.5, "lat": 3.0},
-          {"lon": 102.3, "lat": 3.5}
+          {"lon": 101.65, "lat": 3.0},
+          {"lon": 102, "lat": 3.5}
         ]
       },
       "mark": {"type": "line", "color": "black", "strokeWidth": 1},

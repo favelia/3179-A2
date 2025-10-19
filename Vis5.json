@@ -2,11 +2,8 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Utility Access Trends in Malaysia (2016–2022)",
-    "subtitle": "Correlation between utility access levels and state development",
     "anchor": "start",
-    "fontSize": 16,
-    "subtitleFontSize": 13,
-    "subtitlePadding": 6
+    "fontSize": 16
   },
   "data": {
     "url": "https://raw.githubusercontent.com/favelia/3179-A2/main/hh_access_amenities_states.csv"
@@ -28,8 +25,8 @@
       "bind": {
         "input": "select",
         "options": [
-          "Johor","Kedah","Kelantan","Malacca","Negeri Sembilan",
-          "Pahang","Perak","Penang","Sabah","Sarawak","Selangor","Trengganu"
+          "Johor", "Kedah", "Kelantan", "Malacca", "Negeri Sembilan",
+          "Pahang", "Perak", "Penang", "Sabah", "Sarawak", "Selangor", "Trengganu"
         ],
         "name": "Select State: "
       },
@@ -58,7 +55,7 @@
         "field": "Access_Percentage",
         "type": "quantitative",
         "title": "Access to Utility (%)",
-        "scale": {"zero": true}   // 👈 starts y-axis at 0
+        "scale": {"zero": true}
       },
       "tooltip": [
         {"field": "state", "title": "State"},

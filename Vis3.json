@@ -2,7 +2,11 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 680,
   "height": 440,
-  "title": "Poverty Rate by State in Malaysia (2022)",
+  "title": {
+    "text": "Poverty Rate by State in Malaysia (2022)",
+    "anchor": "start",
+    "fontSize": 16
+  },
   "projection": {
     "type": "mercator",
     "center": [109.5, 3],
@@ -54,6 +58,44 @@
           {"field": "income_median", "title": "Median Income (RM)"},
           {"field": "gini", "title": "Gini Index"}
         ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 116.5,
+            "lat": 5.5,
+            "text": "Sabah dominates the poverty rate with almost 20%"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -25,
+        "dy": -15,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#1a1a1a"
+      },
+      "encoding": {
+        "longitude": {"field": "lon"},
+        "latitude": {"field": "lat"},
+        "text": {"field": "text"}
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {"lon": 114, "lat": 5.8},
+          {"lon": 115.8, "lat": 5.3}
+        ]
+      },
+      "mark": {"type": "line", "color": "black", "strokeWidth": 1.2},
+      "encoding": {
+        "longitude": {"field": "lon"},
+        "latitude": {"field": "lat"}
       }
     }
   ],

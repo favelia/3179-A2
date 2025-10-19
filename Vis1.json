@@ -56,7 +56,7 @@
     {
       "data": {
         "values": [
-          {"lon": 101.5, "lat": 3.0, "text": "Selangor has the highest mean income of RM 12,233"}
+          {"lon": 101.5, "lat": 3.0, "text": "Kuala Lumpur has the highest mean income of RM 13,325"}
         ]
       },
       "mark": {
@@ -78,7 +78,7 @@
       "data": {
         "values": [
           {"lon": 101.5, "lat": 3.0},
-          {"lon": 102.3, "lat": 3.5}
+          {"lon": 102, "lat": 3.5}
         ]
       },
       "mark": {"type": "line", "color": "black", "strokeWidth": 1},

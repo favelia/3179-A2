@@ -3,7 +3,7 @@
   "title": {
     "text": "Utility Access Trends in Malaysia (2016–2022)",
     "anchor": "start",
-    "fontSize": 16
+    "fontSize": 14
   },
   "data": {
     "url": "https://raw.githubusercontent.com/favelia/3179-A2/main/hh_access_amenities_states.csv"

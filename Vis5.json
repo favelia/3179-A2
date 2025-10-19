@@ -1,6 +1,13 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Utility Access Trends in Malaysia (2016–2022)",
+  "title": {
+    "text": "Utility Access Trends in Malaysia (2016–2022)",
+    "subtitle": "Correlation between utility access levels and state development",
+    "anchor": "start",
+    "fontSize": 16,
+    "subtitleFontSize": 13,
+    "subtitlePadding": 6
+  },
   "data": {
     "url": "https://raw.githubusercontent.com/favelia/3179-A2/main/hh_access_amenities_states.csv"
   },
@@ -9,9 +16,10 @@
       "fold": ["piped_water", "sanitation", "electricity"],
       "as": ["Utility", "Access_Percentage"]
     },
+    { "calculate": "year(datum.date)", "as": "Year" },
     {
-      "calculate": "year(datum.date)",
-      "as": "Year"
+      "calculate": "datum.Utility == 'piped_water' ? 'Piped Water' : datum.Utility == 'sanitation' ? 'Sanitation' : 'Electricity'",
+      "as": "Utility"
     }
   ],
   "params": [
@@ -29,14 +37,12 @@
     }
   ],
   "facet": {
-  "column": {"field": "Utility", "type": "nominal", "title": "Utility Type"}
+    "column": {"field": "Utility", "type": "nominal", "title": "Utility Type"}
   },
   "spec": {
-    "width": 260,
-    "height": 240,
-    "transform": [
-      { "filter": "datum.state == StateSelect" }
-    ],
+    "width": 220,
+    "height": 300,
+    "transform": [{ "filter": "datum.state == StateSelect" }],
     "mark": {
       "type": "line",
       "point": true,
@@ -52,19 +58,20 @@
         "field": "Access_Percentage",
         "type": "quantitative",
         "title": "Access to Utility (%)",
-        "scale": { "domain": [60, 100] }
+        "scale": {"zero": true}   // 👈 starts y-axis at 0
       },
       "tooltip": [
-        { "field": "state", "title": "State" },
-        { "field": "Year" },
-        { "field": "Utility" },
-        { "field": "Access_Percentage", "title": "Access (%)" }
+        {"field": "state", "title": "State"},
+        {"field": "Year"},
+        {"field": "Utility"},
+        {"field": "Access_Percentage", "title": "Access (%)"}
       ]
     }
   },
   "config": {
-    "facet": { "spacing": 16 },
-    "axis": { "labelFontSize": 11, "titleFontSize": 12 },
-    "title": { "fontSize": 16, "anchor": "start" }
+    "facet": {"spacing": 16},
+    "axis": {"labelFontSize": 11, "titleFontSize": 12},
+    "title": {"anchor": "start"},
+    "background": "transparent"
   }
 }

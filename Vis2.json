@@ -5,7 +5,7 @@
   "title": {
     "text": "Household Expenditure by State (2022)",
     "anchor": "start",
-    "fontSize": 16
+    "fontSize": 14
   },
   "projection": {
     "type": "mercator",

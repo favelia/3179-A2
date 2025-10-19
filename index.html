@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Malaysia Socioeconomic Visualisations (2022)</title>
+  <title>Malaysia Socioeconomic and Living Standards</title>
 
   <!-- Vega Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
@@ -30,68 +30,120 @@
 
     h1 {
       font-family: 'Georgia', serif;
-      font-size: 2.4em;
+      font-size: 2.8em;
       margin-bottom: 8px;
       color: #2a2a2a;
     }
 
     h2 {
       font-family: 'Georgia', serif;
-      font-size: 1.6em;
+      font-size: 1.8em;
       color: #2e4057;
-      margin-bottom: 12px;
+      margin-bottom: 15px;
+      margin-top: 10px;
+      text-align: center;
     }
 
     p {
-      max-width: 520px;
-      margin: auto;
-      font-size: 1em;
+      max-width: 700px;
+      margin: 10px auto 0;
+      font-size: 1.2em;
       color: #555;
       line-height: 1.6;
+      text-align: center;
+    }
+
+    .vis-explanation p {
+      max-width: 450px;
+      margin: 10px auto 0;
+      text-align: justify;
+      line-height: 1.7;
+      font-size: 1em;
+      color: #555;
+    }
+
+    .vis-pair {
+      display: grid;
+      grid-template-columns: auto auto;
+      gap: 40px;
+      margin: 50px auto 30px;
+      width: fit-content;
+      padding: 10px;
+      align-items: start;
+      justify-content: center;
+    }
+
+    .vis-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      background-color: #fff;
+      border-radius: 14px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+      padding: 20px;
     }
 
     .vis-section {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      gap: 60px;
-      margin: 70px auto;
+      justify-content: center;
+      margin: 50px auto;
+      width: 90%;
       max-width: 1200px;
-      padding: 20px;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+      padding: 30px 30px 40px;
     }
 
     .vis-container {
-      flex: 1.2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
       text-align: center;
     }
 
-    .vis-explanation {
-      flex: 0.8;
+    .vega-embed {
+      display: flex;
+      justify-content: center;
+      margin: 0 auto;
+      width: 100%;
+      max-width: 1000px;
     }
 
-    .vega-embed {
-      border-radius: 12px;
-      box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.15);
-      background-color: #fff;
-      padding: 12px;
+    .vega-embed > div {
+      margin: 0 auto !important;
     }
 
     footer {
       text-align: center;
-      font-size: 0.85em;
-      color: #777;
-      margin: 60px 0 30px;
+      font-size: 0.9em;
+      color: #555;
+      background-color: #f4efe7;
+      border-top: 2px solid #ddd0b9;
+      padding: 25px 15px;
+      margin-top: 40px;
+    }
+
+    footer a {
+      color: #2e4057;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
     }
 
     @media (max-width: 900px) {
-      .vis-section {
-        flex-direction: column;
-      }
-      .vis-explanation {
-        text-align: center;
+      .vis-pair {
+        grid-template-columns: 1fr;
       }
       .vega-embed {
-        width: 95% !important;
+        max-width: 100%;
       }
     }
   </style>
@@ -99,80 +151,113 @@
 
 <body>
   <header>
-    <h1>Malaysia Socioeconomic and Poverty Insights (2022)</h1>
-    <p>Exploring income, expenditure, and poverty patterns across Malaysian states using interactive data visualisations.</p>
+    <h1>Malaysia Socioeconomic and Living Standards</h1>
+    <p>Explore how economics and infrastructure shape Malaysia's quality of life.<br>
+      Through maps and charts, it highlights regional disparities and progress.</p>
   </header>
 
-  <!-- Visualization 1 -->
-  <section class="vis-section">
-    <div class="vis-container">
-      <div id="interactive-map"></div>
+  <!-- Visualization 1 + 2 -->
+  <section class="vis-pair">
+    <div class="vis-item">
+      <h2>Household Income by State</h2>
+      <div class="vis-container">
+        <div id="income-map"></div>
+      </div>
+      <div class="vis-explanation">
+        <p>Urban centers such as <b>Kuala Lumpur</b> and <b>Selangor</b> have the highest household incomes (RM 13,300+) driven by dense economic activity.
+          In contrast, rural states such as <b>Kelantan</b> and <b>Sabah</b> remain on the lower side, reflecting limited opportunities.
+          The income difference remains one of Malaysia's socioeconomic gaps.</p>
+      </div>
     </div>
-    <div class="vis-explanation">
-      <h2>State Level Mean Income and Expenditure</h2>
-      <p>
-        Expenditure in <b>Kuala Lumpur</b> and <b>Selangor</b> is nearly twice as much as the East Coast. 
-        The gap reflects not just higher wages but also lifestyle costs in urban centers.  
-        Meanwhile, states like <b>Kelantan</b> and <b>Sabah</b> show how rural economies still keep expenditure modest despite steady growth.
-      </p>
+
+    <div class="vis-item">
+      <h2>Household Expenditure by State</h2>
+      <div class="vis-container">
+        <div id="expenditure-map"></div>
+      </div>
+      <div class="vis-explanation">
+        <p>Mirrors the income patterns; major states such as <b>Kuala Lumpur</b> (RM 7800+) lead in household expenditure, indicating urban cost of living. 
+          Rural regions such as <b>Perlis</b> show modest spending levels (RM 3800+), influenced by local price differences.
+          Higher income signals deeper economic participation.</p>
+      </div>
     </div>
   </section>
 
-  <script type="text/javascript">
-    vegaEmbed(
-      '#interactive-map',
-      'https://raw.githubusercontent.com/favelia/3179-A2/main/Vis1.json',
-      { actions: false }
-    ).catch(console.error);
+  <script>
+    vegaEmbed('#income-map', 'https://raw.githubusercontent.com/favelia/3179-A2/main/Vis1.json', {actions:false});
+    vegaEmbed('#expenditure-map', 'https://raw.githubusercontent.com/favelia/3179-A2/main/Vis2.json', {actions:false});
   </script>
 
-  <!-- Visualization 2 -->
+  <!-- Visualization 3: Poverty Rate -->
   <section class="vis-section">
+    <h2>Poverty Rate by State</h2>
     <div class="vis-container">
       <div id="poverty-map"></div>
     </div>
     <div class="vis-explanation">
-      <h2>Poverty Rate by State</h2>
-      <p>
-        <b>Sabah</b> continued to record the highest poverty rate, almost 20 times higher than in Kuala Lumpur.  
-        <b>Labuan</b> and <b>Putrajaya</b> remain among the lowest despite smaller populations, showing the impact of concentrated urban economies.  
-        The clear East–West divide highlights how development remains uneven across the country.
-      </p>
+      <p><b>Sabah</b> continues to record the highest poverty rates with 19.7%, 
+        while <b>Putrajaya</b> remains the most prosperous with 0.1%. 
+        The East and West divide shows how geography still shapes the economy across Malaysia.</p>
     </div>
   </section>
-
-  <script type="text/javascript">
-    vegaEmbed(
-      '#poverty-map',
-      'https://raw.githubusercontent.com/favelia/3179-A2/main/Vis2.json',
-      { actions: false }
-    ).catch(console.error);
+  <script>
+    vegaEmbed('#poverty-map', 'https://raw.githubusercontent.com/favelia/3179-A2/main/Vis3.json', {actions:false});
   </script>
 
-  <!-- Visualization 3 -->
+  <!-- Visualization 4: Income vs Gini -->
   <section class="vis-section">
+    <h2>Mean Income vs Gini Index</h2>
     <div class="vis-container">
       <div id="scatter-gini"></div>
     </div>
     <div class="vis-explanation">
-      <h2>Mean Income vs Gini Index</h2>
-      <p>
-        States with higher average income don’t always guarantee fairer wealth distribution.  
-        For instance, <b>Kuala Lumpur</b> tops income charts yet shows notable inequality, while <b>Perlis</b> and <b>Kelantan</b> maintain tighter income gaps.  
-      </p>
+      <p>High-income states do not always indicate equal wealth distribution.  
+        <b>Kuala Lumpur</b> and <b>Selangor</b> have high incomes yet display stronger inequality, 
+        while smaller states like <b>Perlis</b> show more balanced income spreads.
+        Economic growth doesn't guarantee equal income distribution.</p>
     </div>
   </section>
+  <script>
+    vegaEmbed('#scatter-gini', 'https://raw.githubusercontent.com/favelia/3179-A2/main/Vis4.json', {actions:false});
+  </script>
 
-  <script type="text/javascript">
-    vegaEmbed(
-      '#scatter-gini',
-      'https://raw.githubusercontent.com/favelia/3179-A2/main/Vis3.json',
-      { actions: false }
-    ).catch(console.error);
+  <!-- Visualization 5: Utility Access -->
+  <section class="vis-section">
+    <h2>Utility Access Trends (2016–2022)</h2>
+    <div class="vis-container">
+      <div id="multi-line"></div>
+    </div>
+    <div class="vis-explanation">
+      <p>Malaysia’s access to essential utilities—water, sanitation, and electricity—has reached near universality.
+        Yet, <b>Sabah</b> and <b>Sarawak</b> lag slightly behind, especially in rural areas, 
+        revealing challenges in reaching remote communities.</p>
+    </div>
+  </section>
+  <script>
+    vegaEmbed('#multi-line', 'https://raw.githubusercontent.com/favelia/3179-A2/main/Vis5.json', {actions:false});
+  </script>
+
+  <!-- Visualization 6: Utility vs Expenditure -->
+  <section class="vis-section">
+    <h2>Correlation Between Mean Expenditure and Utility Access</h2>
+    <div class="vis-container">
+      <div id="scatter-plot"></div>
+    </div>
+    <div class="vis-explanation">
+      <p>Household expenditure relates to access to utilities such as piped water, sanitation, and electricity. 
+        Therefore, states with higher expenditure tend to report stronger access to utilities.
+        Some states achieve strong utility coverage even with moderate expenditure—such as <b>Penang</b>—showing effective infrastructure management.</p>
+    </div>
+  </section>
+  <script>
+    vegaEmbed('#scatter-plot', 'https://raw.githubusercontent.com/favelia/3179-A2/main/Vis6.json', {actions:false});
   </script>
 
   <footer>
-    © 2025 Flisha Avelia | Data Source: Department of Statistics Malaysia (DOSM)
+    © 2025 Flisha Avelia | Data Source: 
+    <br>
+    <a href="https://data.gov.my/data-catalogue/hies_state" target="_blank">Household Income & Expenditure Survey (HIES)</a> | 
+    <a href="https://open.dosm.gov.my/data-catalogue/hh_access_amenities" target="_blank">Household Amenities Access Dataset</a>
   </footer>
 </body>
 </html>

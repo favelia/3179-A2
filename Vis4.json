@@ -1,8 +1,12 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Mean Income vs Gini Index by State",
+  "title": {
+    "text": "Mean Income vs Gini Index by State",
+    "anchor": "start",
+    "fontSize": 16
+  },
   "width": 600,
-  "height": 450,
+  "height": 420,
   "data": {
     "url": "https://raw.githubusercontent.com/favelia/3179/main/hies_state.csv"
   },

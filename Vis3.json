@@ -1,24 +1,18 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 600,
-  "height": 450,
+  "width": 680,
+  "height": 440,
   "title": "Poverty Rate by State in Malaysia (2022)",
   "projection": {
     "type": "mercator",
     "center": [109.5, 3],
-    "scale": 1700,
-    "translate": [300, 240]
+    "scale": 1800,
+    "translate": [340, 240]
   },
   "layer": [
     {
-      "data": {
-        "graticule": true
-      },
-      "mark": {
-        "type": "geoshape",
-        "stroke": "#cccccc",
-        "strokeWidth": 0.5
-      }
+      "data": {"graticule": true},
+      "mark": {"type": "geoshape", "stroke": "#cccccc", "strokeWidth": 0.5}
     },
     {
       "data": {

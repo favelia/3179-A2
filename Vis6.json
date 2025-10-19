@@ -1,6 +1,10 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Correlation Between Mean Expenditure and Utility Access (2022)",
+  "title": {
+    "text": "Correlation Between Mean Expenditure and Utility Access (2022)",
+    "anchor": "start",
+    "fontSize": 16
+  },
   "data": {
     "url": "https://raw.githubusercontent.com/favelia/3179-A2/main/hies_state.csv"
   },
@@ -28,9 +32,9 @@
     "column": {"field": "Utility", "type": "nominal", "title": "Utility Type"}
   },
   "spec": {
-    "width": 200,
-    "height": 200,
-    "mark": {"type": "circle", "tooltip": true, "size": 100},
+    "width": 220,
+    "height": 300,
+    "mark": {"type": "circle", "tooltip": true, "size": 120},
     "encoding": {
       "x": {
         "field": "expenditure_mean",
@@ -40,7 +44,8 @@
       "y": {
         "field": "Access",
         "type": "quantitative",
-        "title": "Utility Access (%)"
+        "title": "Utility Access (%)",
+        "scale": {"zero": true}
       },
       "color": {
         "field": "Utility",
@@ -57,7 +62,8 @@
   },
   "config": {
     "view": {"stroke": null},
-    "facet": {"spacing": 10},
-    "axis": {"labelFontSize": 10, "titleFontSize": 12}
+    "facet": {"spacing": 16},
+    "axis": {"labelFontSize": 11, "titleFontSize": 12},
+    "background": "transparent"
   }
 }

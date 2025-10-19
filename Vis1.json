@@ -5,7 +5,7 @@
   "title": {
     "text": "Household Income by State (2022)",
     "anchor": "start",
-    "fontSize": 15
+    "fontSize": 14
   },
   "projection": {
     "type": "mercator",

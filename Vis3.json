@@ -5,99 +5,62 @@
   "title": {
     "text": "Poverty Rate by State in Malaysia (2022)",
     "anchor": "start",
-    "fontSize": 14
+    "fontSize": 15
   },
-  "projection": {
-    "type": "mercator",
-    "center": [109.5, 3],
-    "scale": 1800,
-    "translate": [340, 240]
+  "data": {
+    "url": "https://raw.githubusercontent.com/favelia/3179/main/hies_state.csv"
+  },
+  "transform": [
+    {
+      "calculate": "indexof(['Sabah','Sarawak','Labuan'], datum.state) >= 0 ? 'East Malaysia' : 'Peninsular Malaysia'",
+      "as": "region"
+    }
+  ],
+  "mark": {"type": "rule"},
+  "encoding": {
+    "y": {
+      "field": "state",
+      "type": "ordinal",
+      "sort": "-x",
+      "title": "State"
+    },
+    "x": {
+      "field": "poverty",
+      "type": "quantitative",
+      "title": "Poverty Rate (%)"
+    },
+    "tooltip": [
+      {"field": "state", "title": "State"},
+      {"field": "poverty", "title": "Poverty Rate (%)"},
+      {"field": "region", "title": "Region"}
+    ],
+    "color": {
+      "field": "region",
+      "type": "nominal",
+      "scale": {"domain": ["Peninsular Malaysia", "East Malaysia"], "range": ["#1f77b4", "#ff7f0e"]},
+      "legend": {"title": "Region"}
+    }
   },
   "layer": [
     {
-      "data": {"graticule": true},
-      "mark": {"type": "geoshape", "stroke": "#cccccc", "strokeWidth": 0.5}
-    },
-    {
-      "data": {
-        "url": "https://raw.githubusercontent.com/vega/vega-datasets/main/data/world-110m.json",
-        "format": {"type": "topojson", "feature": "countries"}
-      },
-      "transform": [{"filter": "datum.id != '458'"}],
-      "mark": {"type": "geoshape", "fill": "#e0e0e0", "stroke": "white"}
-    },
-    {
-      "data": {
-        "url": "https://raw.githubusercontent.com/favelia/3179/main/geoBoundaries-MYS-ADM1.json",
-        "format": {"type": "topojson", "feature": "geoBoundaries-MYS-ADM1"}
-      },
-      "transform": [
-        {
-          "lookup": "properties.shapeName",
-          "from": {
-            "data": {
-              "url": "https://raw.githubusercontent.com/favelia/3179/main/hies_state.csv"
-            },
-            "key": "state",
-            "fields": ["poverty", "income_mean", "income_median", "gini"]
-          }
-        }
-      ],
-      "mark": {"type": "geoshape", "stroke": "white"},
+      "mark": {"type": "rule", "strokeWidth": 2, "color": "#999"},
       "encoding": {
-        "color": {
-          "field": "poverty",
-          "type": "quantitative",
-          "title": "Poverty Rate (%)",
-          "scale": {"scheme": "purples"}
-        },
-        "tooltip": [
-          {"field": "properties.shapeName", "title": "State"},
-          {"field": "poverty", "title": "Poverty Rate (%)"},
-          {"field": "income_mean", "title": "Mean Income (RM)"},
-          {"field": "income_median", "title": "Median Income (RM)"},
-          {"field": "gini", "title": "Gini Index"}
-        ]
+        "x": {"field": "poverty"},
+        "y": {"field": "state"}
       }
     },
     {
-      "data": {
-        "values": [
-          {
-            "lon": 116.5,
-            "lat": 5.5,
-            "text": "Sabah dominates the poverty rate with almost 20%"
-          }
-        ]
-      },
-      "mark": {
-        "type": "text",
-        "align": "right",
-        "dx": -25,
-        "dy": -15,
-        "fontSize": 12,
-        "fontWeight": "bold",
-        "color": "#1a1a1a"
-      },
+      "mark": {"type": "circle", "size": 120, "stroke": "black", "strokeWidth": 0.5},
       "encoding": {
-        "longitude": {"field": "lon"},
-        "latitude": {"field": "lat"},
-        "text": {"field": "text"}
-      }
-    },
-    {
-      "data": {
-        "values": [
-          {"lon": 114, "lat": 5.8},
-          {"lon": 115.8, "lat": 5.3}
-        ]
-      },
-      "mark": {"type": "line", "color": "black", "strokeWidth": 1.2},
-      "encoding": {
-        "longitude": {"field": "lon"},
-        "latitude": {"field": "lat"}
+        "x": {"field": "poverty"},
+        "y": {"field": "state"},
+        "color": {"field": "region"}
       }
     }
   ],
-  "config": {"background": "transparent"}
+  "config": {
+    "axis": {"labelFontSize": 12, "titleFontSize": 13},
+    "view": {"stroke": "transparent"},
+    "background": "transparent"
+  }
 }

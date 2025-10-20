@@ -22,7 +22,7 @@
       "field": "income_mean",
       "type": "quantitative",
       "title": "Mean Income (RM)",
-      "scale": {"zero": false}
+      "scale": {"zero": true}
     },
     "y": {
       "field": "gini",

@@ -3,7 +3,7 @@
   "title": {
     "text": "Correlation Between Mean Expenditure and Utility Access (2022)",
     "anchor": "start",
-    "fontSize": 14
+    "fontSize": 15
   },
   "data": {
     "url": "https://raw.githubusercontent.com/favelia/3179-A2/main/hies_state.csv"
